@@ -1,26 +1,23 @@
 <?php
-	session_start();
-	include "../../config.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<link href="<?php echo $PREFIX; ?>/template/style.css" rel="stylesheet" type="text/css"  />
-	<meta charset="utf-8" />
-	<title>FAQ</title>
-</head>
+// Load the Savant3 class file and create an instance.
+require_once '../../Savant3.php';
 
-<body>
-<div id="wrapper">
-     <?php
-			include '../../template/templateheader.php';
-	?>
-     <section id="content_container">
-		<h5>FAQ</h5>
-		
-    	<article class="auction_container">
-		
-		<section class="answer">
+// initialize template engine
+$tpl = new Savant3();
+
+// set search path for templates
+$tpl->addPath('template', '../../template');
+
+// Create a title.
+$template_path = "../../template/";
+$resource_path = "../../";
+$title = "FAQ";
+$meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
+
+$contentContainer = array(
+    array(
+        "title" => $title,
+        "content" => '<section class="answer">
 		<ol>
         
 		<li><a name="Question1">What is CoinCod?</a></li>
@@ -39,13 +36,20 @@
         True, there is a possibility that it might happen. This is when the auction winner turns out to be fraudulent – for example someone who has registered multiple accounts in our system without entering any personal data and automatically received free bids for each username created. All bids by such fraud users will be considered void and the auction will be re-listed from the same point when it ended so that real users can have a possibility to win it. Our support team is doing its best on a daily basis to filter such cases.
 
 		</ol>
-		</section>  <!--end div faq-->  
-			<img class="bottom" src="<?php echo $PREFIX; ?>/template/template_image/bottom/faq.png" alt="questions">
-	  	</article>  <!--end div auction_container-->
-	</section>  <!--end div content_container-->
-</div>  <!--wrapper-->
-	<?php
-		include "../../template/templatefooter.html";
-	?>
-</body>
-</html>
+		</section>  <!--end div faq-->',
+		"bottom_image" =>'<img class="bottom" src="../../template/template_image/bottom/faq.png" alt="questions">'
+    )
+);
+
+// Assign values to the Savant instance.
+$tpl->template_path = $template_path;
+$tpl->resource_path = $resource_path;
+$tpl->title = $title;
+$tpl->meta_description = $meta_description;
+$tpl->content_container = $contentContainer;
+
+// Display a template using the assigned values.
+$tpl->login = $tpl->fetch('login.tpl');
+$tpl->header = $tpl->fetch('header.tpl');
+$tpl->footer = $tpl->fetch('footer.tpl');
+$tpl->display('main.tpl');
