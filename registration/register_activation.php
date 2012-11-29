@@ -1,45 +1,36 @@
 <?php
-	include "../config.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>Activation</title>
-</head>
+// Load the Savant3 class file and create an instance.
+require_once '../Savant3.php';
 
-<body>
-<div id="wrapper">
-	<?php
-		include "../template/templateheader.php";
-	?>
-  <section id="content_container">
-    <section class="auction_container">
-    <?php
-		$id = $_REQUEST['id'];
-		$id = ereg_replace("[^0-9]", "", $id);
-		if (!$id) 
-		{	
-			echo "</br>Missing Data";
-		}
-		$sql = mysql_query("UPDATE user_account SET Activation='1' WHERE user_id='$id'"); 
+// initialize template engine
+$tpl = new Savant3();
 
-		$update_activation = mysql_query("SELECT * FROM user_account WHERE user_id='$id' AND Activation='1'"); 
-		$updateactivation = mysql_num_rows($update_activation); 
-		if($updateactivation == 0)
-		{ 
-			echo "</br>Caution! This account cannot be activate.";
-		} 
-		elseif ($updateactivation > 0) 
-		{
-			echo "</br>Congratulations! This account is succesfully activated."; 
-		} 
-	?>
-    </section>
-  </section>
-</div>
-    <?php
-		include "../template/templatefooter.html";
-	?>
-</body>
-</html>
+// set search path for templates
+$tpl->addPath('template', '../template');
+
+// Create a title.
+$template_path = "../template/";
+$resource_path = "../";
+$title = "Registration";
+$meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
+
+$contentContainer = array(
+    array(
+        "title" => $title,
+        "content" =>$tpl->fetch($template_path.'register_act.tpl'),
+		"bottom_image" =>'<div class="location"><img src="../template/template_image/bottom/location.png" alt="pointer"></div>'
+    )
+);
+
+// Assign values to the Savant instance.
+$tpl->template_path = $template_path;
+$tpl->resource_path = $resource_path;
+$tpl->title = $title;
+$tpl->meta_description = $meta_description;
+$tpl->content_container = $contentContainer;
+
+// Display a template using the assigned values.
+$tpl->login = $tpl->fetch($template_path.'login.tpl');
+$tpl->header = $tpl->fetch($template_path.'header.tpl');
+$tpl->footer = $tpl->fetch($template_path.'footer.tpl');
+$tpl->display($template_path.'main.tpl');

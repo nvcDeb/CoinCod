@@ -1,23 +1,23 @@
 <?php
-	session_start();
-	include "../config.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>Location</title>
-</head>
+// Load the Savant3 class file and create an instance.
+require_once '../Savant3.php';
 
-<body>
-<div id="wrapper">
-    <?php
-		include "../template/templateheader.php";
-	?>
-    <section id="content_container">
-			<h5>Our Location</h5>
-		<section class="auction_container">
-			<article><iframe width="700" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.my/maps?f=d&amp;source=s_d&amp;saddr=Jalan+Dato+Senu+4&amp;daddr=&amp;geocode=FWi6MAAdeMEPBg&amp;sll=3.193586,101.696888&amp;sspn=0.003037,0.005284&amp;hl=en&amp;mra=mr&amp;ie=UTF8&amp;ll=3.193586,101.696888&amp;spn=0.003037,0.005284&amp;t=m&amp;output=embed"></iframe><small><a href="http://maps.google.com.my/maps?f=d&amp;source=embed&amp;saddr=Jalan+Dato+Senu+4&amp;daddr=&amp;geocode=FWi6MAAdeMEPBg&amp;sll=3.193586,101.696888&amp;sspn=0.003037,0.005284&amp;hl=en&amp;mra=mr&amp;ie=UTF8&amp;ll=3.193586,101.696888&amp;spn=0.003037,0.005284&amp;t=m" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+// initialize template engine
+$tpl = new Savant3();
+
+// set search path for templates
+$tpl->addPath('template', '../template');
+
+// Create a title.
+$template_path = "../template/";
+$resource_path = "../";
+$title = "Location";
+$meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
+
+$contentContainer = array(
+    array(
+        "title" => $title,
+        "content" => '<article><iframe width="700" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.my/maps?q=3.13006,101.627523&amp;num=1&amp;hl=en&amp;ie=UTF8&amp;ll=3.129789,101.62751&amp;spn=0.005817,0.010568&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.my/maps?q=3.13006,101.627523&amp;num=1&amp;hl=en&amp;ie=UTF8&amp;ll=3.129789,101.62751&amp;spn=0.005817,0.010568&amp;t=m&amp;z=14&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
 			
 			<address><ul>
 			<li>Address: </li>
@@ -29,14 +29,20 @@
 			<li>47400 Petaling Jaya,</li>
 			<li>Selangor Darul Ehsan, Malaysia</li>
 			</ul>
-			</address>
-		        
-			<div class="location"><img src="<?php echo $PREFIX; ?>/template/template_image/bottom/location.png" alt="pointer"></div></article>
-		</section>
-	</section>
-</div><!--wrapper-->
-	<?php
-		include "../template/templatefooter.html";
-	?>
-</body>
-</html>
+			</address>',
+		"bottom_image" =>'<div class="location"><img src="../template/template_image/bottom/location.png" alt="pointer"></div>'
+    )
+);
+
+// Assign values to the Savant instance.
+$tpl->template_path = $template_path;
+$tpl->resource_path = $resource_path;
+$tpl->title = $title;
+$tpl->meta_description = $meta_description;
+$tpl->content_container = $contentContainer;
+
+// Display a template using the assigned values.
+$tpl->login = $tpl->fetch($template_path.'login.tpl');
+$tpl->header = $tpl->fetch($template_path.'header.tpl');
+$tpl->footer = $tpl->fetch($template_path.'footer.tpl');
+$tpl->display($template_path.'main.tpl');

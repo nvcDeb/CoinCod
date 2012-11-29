@@ -1,24 +1,23 @@
 <?php
-	session_start();
-	include "../config.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>FAQ</title>
-</head>
+// Load the Savant3 class file and create an instance.
+require_once '../Savant3.php';
 
-<body>
-<div id="wrapper">
-    <?php
-		include "../template/templateheader.php";
-	?>
-   	
-	<section id="content_container">
-	<h5>FAQ</h5>
-		<section class="auction_container">
-		<article class="faq">
+// initialize template engine
+$tpl = new Savant3();
+
+// set search path for templates
+$tpl->addPath('template', '../template');
+
+// Create a title.
+$template_path = "../template/";
+$resource_path = "../";
+$title = "FAQ";
+$meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
+
+$contentContainer = array(
+    array(
+        "title" => $title,
+        "content" => '<article class="faq">
 		<ol>
 		<li><a href="faq_page1#Question1">What is CoinCod?</a></li>
 		<li><a href="faq_page1#Question2">How does CoinCod work?</a></li>
@@ -27,7 +26,7 @@
 		<li><a href="faq_page1#Question5">There is an auction that ended today and now I see it re-listed. Why?</a></li>
 		<li><a href="faq_page2#Question6">Are the products being sold all new?</a></li>
 		<li><a href="faq_page2#Question7">How much does it cost for me to place a bid?</a></li>
-		<li><a href="faq_page2#Question8">I don’t live in the Malaysia. Can I still participate in CoinCod's auctions?</a></li>
+		<li><a href="faq_page2#Question8">I don\'t live in the Malaysia. Can I still participate in CoinCod\'s auctions?</a></li>
 		<li><a href="faq_page2#Question9">Is the warranty on the goods that I bid for an win in the auctions?</a></li>
 		<li><a href="faq_page2#Question10">What happens if at a new auction only one bid is being submitted and nobody else raises the bid?</a></li>
 		<li><a href="faq_page3#Question11">Can I undo already submitted bids?</a></li>
@@ -52,14 +51,20 @@
 		<li><a href="faq_page6#Question30">If I have additional questions, how do I contact CoinCod?</a></li>
 		</ol>
 		
-		</article>  <!--end div faq-->
-		
-		<img class="bottom" src="<?php echo $PREFIX; ?>/template/template_image/bottom/faq.png" alt="questions">
-	  	</section>  <!--end div auction_container-->
-	</section>  <!--end div content_container-->
-</div>  <!--wrapper-->
-<?php
-	include "../template/templatefooter.html";
-?>
-</body>
-</html>
+		</article>  <!--end div faq-->',
+		"bottom_image" =>'<img class="bottom" src="../template/template_image/bottom/faq.png" alt="questions">'
+    )
+);
+
+// Assign values to the Savant instance.
+$tpl->template_path = $template_path;
+$tpl->resource_path = $resource_path;
+$tpl->title = $title;
+$tpl->meta_description = $meta_description;
+$tpl->content_container = $contentContainer;
+
+// Display a template using the assigned values.
+$tpl->login = $tpl->fetch($template_path.'login.tpl');
+$tpl->header = $tpl->fetch($template_path.'header.tpl');
+$tpl->footer = $tpl->fetch($template_path.'footer.tpl');
+$tpl->display($template_path.'main.tpl');

@@ -1,24 +1,23 @@
 <?php
-	session_start();
-	include "../config.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>Graphics</title>
-</head>
+// Load the Savant3 class file and create an instance.
+require_once '../Savant3.php';
 
-<body>
-<div id="wrapper">
-    <?php
-		include "../template/templateheader.php";
-	?>
-	<section id="content_container">
-			<h5>Graphics</h5>
-		<section class="auction_container">
-		
-		<section id="graphics">
+// initialize template engine
+$tpl = new Savant3();
+
+// set search path for templates
+$tpl->addPath('template', '../template');
+
+// Create a title.
+$template_path = "../template/";
+$resource_path = "../";
+$title = "Graphics";
+$meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
+
+$contentContainer = array(
+    array(
+        "title" => $title,
+        "content" => '<section id="graphics">
 			
 			<img src="../template/template_image/bottom/buy_tokens.png" alt="tokens shopping"><a href="download?file=buy_tokens.png">Download</a>
 			<img src="../template/template_image/bottom/careers.png" alt="careers"><a href="download?file=careers.png">Download</a>
@@ -33,13 +32,20 @@
 			<img src="../template/template_image/bottom/sorry.png" alt="sorry look"><a href="download?file=sorry.png">Download</a>
 			<img src="../template/template_image/bottom/term_of_service.png" alt="focus"><a href="download?file=term_of_service.png">Download</a>
 			
-		</section>	
-		</section>
-	 
-	</section>
-</div><!--wrapper-->
-	<?php
-		include "../template/templatefooter.html";
-	?>
-</body>
-</html>
+		</section>',
+		"bottom_image" =>''
+    )
+);
+
+// Assign values to the Savant instance.
+$tpl->template_path = $template_path;
+$tpl->resource_path = $resource_path;
+$tpl->title = $title;
+$tpl->meta_description = $meta_description;
+$tpl->content_container = $contentContainer;
+
+// Display a template using the assigned values.
+$tpl->login = $tpl->fetch($template_path.'login.tpl');
+$tpl->header = $tpl->fetch($template_path.'header.tpl');
+$tpl->footer = $tpl->fetch($template_path.'footer.tpl');
+$tpl->display($template_path.'main.tpl');
