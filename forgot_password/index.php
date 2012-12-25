@@ -1,52 +1,36 @@
 <?php
-	ob_start();
-	include "../config.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Forgot Password</title>
-  	<meta charset="utf-8" />
-  	<link rel="stylesheet" href="<?php echo $PREFIX; ?>/validation/css/validation.css" type="text/css" />
-  	<script type="text/javascript" src="<?php echo $PREFIX; ?>/validation/livevalidation_standalone.compressed.js"></script>
-    
-</head>
-<body>
-<div id="wrapper">
-	<?php
-		include "../template/templateheader.php";
-	?>
-	<section id="content_container">
-	<h5>Identify Your Account</h5>
-		<section class="auction_container">
-		<form action="<?php echo $PREFIX; ?>/forgot_password/forgotpassword_func.php" enctype="multipart/form-data" name="myForm" id="myForm" method="post">
-	
-			<section class="forgot">
-			<table>
-				<tr>
-				<td>Please enter your email so that we can send you an email for you to reset your password:</td>
-				</tr>
-				<tr>
-				<td><div class="value">Email</div>
-				<input type="text" id="emails" name="emails" class="text"/>
-					<script type="text/javascript">
-						var emails = new LiveValidation('emails');
-						emails.add(Validate.Presence)
-						emails.add(Validate.Email )
-					</script>
-				</td>
-				</tr>
-				<tr>
-				<td><input type="submit" name="button" class="form_button" value="RESET PASSWORD" /></td> 
-				</tr>
-			</table>
-			</section> <!--end div forgot-->
-		</form>
-		</section><!--end div auction_container-->
-	</section><!--end div content_container-->
-</div><!--end div wrapper-->
-	<?php
-		include "../template/templatefooter.html";
-	?>
-</body>
-</html>
+// Load the Savant3 class file and create an instance.
+require_once '../Savant3.php';
+
+// initialize template engine
+$tpl = new Savant3();
+
+// set search path for templates
+$tpl->addPath('template', '../template');
+
+// Create a title.
+$template_path = "../template/";
+$resource_path = "../";
+$title = "Forgot Password";
+$meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
+
+$contentContainer = array(
+    array(
+        "title" => "Identify Your Account",
+        "content" => $tpl->fetch($template_path.'fpass.tpl'),
+		"bottom_image" =>''
+    )
+);
+
+// Assign values to the Savant instance.
+$tpl->template_path = $template_path;
+$tpl->resource_path = $resource_path;
+$tpl->title = $title;
+$tpl->meta_description = $meta_description;
+$tpl->content_container = $contentContainer;
+
+// Display a template using the assigned values.
+$tpl->login = $tpl->fetch($template_path.'login.tpl');
+$tpl->header = $tpl->fetch($template_path.'header.tpl');
+$tpl->footer = $tpl->fetch($template_path.'footer.tpl');
+$tpl->display($template_path.'main.tpl');

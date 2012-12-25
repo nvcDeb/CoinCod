@@ -1,80 +1,37 @@
 <?php
-session_start();
-include "../config.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<link href="<?php echo $PREFIX; ?>/style.css" rel="stylesheet" type="text/css" />
-<title>Buy Tokens</title>
-</head>
+// Load the Savant3 class file and create an instance.
+require_once '../Savant3.php';
 
-<body>
-<div id="wrapper">
-    <?php
-		include "../template/templateheader.php";
-	?>
-    <section id="content_container">
-	<h5>Buy Tokens</h5>
-		<section class="auction_container">	 
-			<div class="buy_tokens">Choose your package by clicking on the button. Please take note that your payment is processed using Paypal. You will also receive a notification e-mail from CoinCod on this transaction.
-			</div>
-		
-			<div class="package_value">
-			
-				<div class="ul">
-					<ul class="token_nav">
-						<h4>Token Packages</h4>
-							<li>
-								<div class="token_value">50 tokens</div>
-							</li>
-							<li>
-								<div class="token_value">100 tokens</div>
-							</li>
-							<li>
-								<div class="token_value">200 tokens</div>
-							</li>
-								<li>
-								<div class="token_value">500 tokens (5% discount)</div>
-							</li>
-							<li>
-								<div class="token_value">1000 tokens (10% discount)</div>
-							</li>
-							<li>
-								<div class="token_value">2500 tokens (20% discount)</div>
-							</li>
-							<li>
-								<div class="token_value">5000 tokens (25% discount)</div>
-							</li>
-					</ul>
-                
-					<ul class="token_nav">
-						<h4>Paypal (RM)</h4>
-								<?php 
-								$array = array("D83KWGJ6FX9YA"=> 15, "X24J6YZZDUN48"=> 30,"BXDZPNG8VAQCA"=>60,"QBD5BC7F7S5YW"=>"142.50","QRQHHTB6L7AK2"=>270,"VGJA9EG9CZ2QJ"=>600,"AZR4JZBCWDX2L"=>1125);
-								foreach ( $array as $i => $j) {
-									echo '
-										<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-											<input type="hidden" name="cmd" value="_s-xclick">
-											<input type="hidden" name="hosted_button_id" value="'.$i.'">        
-											<input type="image" src="http://coincod.com/template/price_button/'.$j.'.png" width="104" height="34" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-											<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-										</form>
-									';
-								} 
-							?>
-					</ul>              
-				</div>
-			
-			</div>
-		
-			<img class="bottom" src="<?php echo $PREFIX; ?>/template/template_image/bottom/buy_tokens.png" alt="tokens shopping">
-		</section>  <!--end div auction_container-->
-	</section>  <!--end div content_container-->
-</div>  <!--wrapper-->
-	<?php
-		include "../template/templatefooter.html";
-	?>
-</body>
-</html>
+// initialize template engine
+$tpl = new Savant3();
+
+// set search path for templates
+$tpl->addPath('template', '../template');
+
+// Create a title.
+$template_path = "../template/";
+$resource_path = "../";
+$title = "Buy Tokens";
+$meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
+
+$contentContainer = array(
+    array(
+        "title" => $title,
+        "content" => '<div class="buy_tokens">Choose your package by clicking on the button. Please take note that your payment is processed using Paypal. You will also receive a notification e-mail from CoinCod on this transaction.
+			</div>'.$tpl->fetch($template_path.'buy_token.tpl'),
+		"bottom_image" =>'<img class="bottom" src="../template/template_image/bottom/buy_tokens.png" alt="tokens shopping">'
+    )
+);
+
+// Assign values to the Savant instance.
+$tpl->template_path = $template_path;
+$tpl->resource_path = $resource_path;
+$tpl->title = $title;
+$tpl->meta_description = $meta_description;
+$tpl->content_container = $contentContainer;
+
+// Display a template using the assigned values.
+$tpl->login = $tpl->fetch($template_path.'login.tpl');
+$tpl->header = $tpl->fetch($template_path.'header.tpl');
+$tpl->footer = $tpl->fetch($template_path.'footer.tpl');
+$tpl->display($template_path.'main.tpl');

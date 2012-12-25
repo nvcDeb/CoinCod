@@ -1,25 +1,23 @@
 <?php
-	session_start();
-	include "../../config.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<link href="<?php echo $PREFIX; ?>/template/style.css" rel="stylesheet" type="text/css"  />
-	<meta charset="utf-8" />
-	<title>FAQ</title>
-</head>
+// Load the Savant3 class file and create an instance.
+require_once '../../Savant3.php';
 
-<body>
-<div id="wrapper">
-    <?php
-		include "../../template/templateheader.php";
-	?>
-     <section id="content_container">
-	<h5>FAQ</h5>
-    	<section class="auction_container">
-		
-		<article class="answer">
+// initialize template engine
+$tpl = new Savant3();
+
+// set search path for templates
+$tpl->addPath('template', '../../template');
+
+// Create a title.
+$template_path = "../../template/";
+$resource_path = "../../";
+$title = "FAQ";
+$meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
+
+$contentContainer = array(
+    array(
+        "title" => $title,
+        "content" => '<article class="answer">
 		<ol>
         
 		<li><a name="Question11">Can I undo already submitted bids?</a></li>
@@ -38,13 +36,20 @@
         The bid button will be replaced with a red "ENDED" button and the countdown will be replaced with "0:00”.
 
 		</ol>
-		</article>  <!--end div Faq-->   
-			<img class="bottom" src="<?php echo $PREFIX; ?>/template/template_image/bottom/faq.png" alt="questions">
-      	</section>  <!--end div auction_container-->
-	</section>  <!--end div content_container-->
-</div>  <!--end div wrapper-->
-<?php
-	include "../../template/templatefooter.html";
-?>
-</body>
-</html>
+		</article>  <!--end div Faq-->',
+		"bottom_image" =>'<img class="bottom" src="../../template/template_image/bottom/faq.png" alt="questions">'
+    )
+);
+
+// Assign values to the Savant instance.
+$tpl->template_path = $template_path;
+$tpl->resource_path = $resource_path;
+$tpl->title = $title;
+$tpl->meta_description = $meta_description;
+$tpl->content_container = $contentContainer;
+
+// Display a template using the assigned values.
+$tpl->login = $tpl->fetch('login.tpl');
+$tpl->header = $tpl->fetch('header.tpl');
+$tpl->footer = $tpl->fetch('footer.tpl');
+$tpl->display('main.tpl');
