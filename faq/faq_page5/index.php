@@ -68,4 +68,4 @@ $tpl->content_container = $contentContainer;
 $tpl->login = $tpl->fetch('login.tpl');
 $tpl->header = $tpl->fetch('header.tpl');
 $tpl->footer = $tpl->fetch('footer.tpl');
-$tpl->display('main.tpl.php');
+$tpl->display('main.tpl');

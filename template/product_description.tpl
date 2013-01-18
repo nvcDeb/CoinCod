@@ -1,5 +1,5 @@
 <?php
-	require $this->template_path.'config.php';
+	require $this->resource_path.'config.php';
 function getProductDetails($pid)
 {
 	$sql = "SELECT * FROM product_list WHERE product_id='$pid'"; 
