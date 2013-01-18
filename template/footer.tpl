@@ -118,6 +118,20 @@ $(document).ready(function(){
 
 });
 </script>
+
+<!--jquery dropdown-->
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script>
+        $(function() {
+            $("#menu").accordion({
+                collapsible: true, 
+                active: false
+            });
+        });
+    </script>
+<!--jquery dropdown-->
         
 </body>
 </html>

@@ -11,9 +11,16 @@
 	<link href="<?php $this ->eprint($this->template_path)?>style_ie.css" rel="stylesheet" type="text/css"  />
 	<![endif]-->
 	<link rel="shortcut icon" href="template/template_image/favicon.ico" />
+	
+	<!--jquery dropdown-->
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+	<!--jquery dropdown-->
+	
 	<!--validation-->
 	<script type="text/javascript" src="<?php echo $PREFIX; ?>/validation/livevalidation_standalone.compressed.js"></script>
     <link rel="stylesheet" href="<?php echo $PREFIX; ?>/validation/css/validation.css" type="text/css" />
+	<!--validation-->
+	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>	    
 <script type="text/javascript">  
   
