@@ -1,13 +1,15 @@
 @charset "utf-8";
 /* CSS Document */
-
-html, body {
+html {
+	margin: 0;
+	padding: 0;
 	height: 100%;
 	}
 	
 body{ 
+	height: 100%;
 	margin:0px;
-	background: #fefefe;  /* the body color */
+	background: #FEE8D6; 	/* the body color */
 
 }
 
@@ -26,6 +28,60 @@ h1,h2,h3,h4,h5,h6{
 	width: 1015px; 
 	margin: 0px auto 0px auto;
 }
+
+/* ---------- BEFORE LOGIN ---------- */
+	#before_login header{
+		padding: 80px
+		}
+		
+	#before_login aside {
+        float: right;
+        width: 330px;
+        top: -50px;
+		margin-right: -90px;
+        position: relative;
+        color: #360;
+        font-family: Sans-serif;
+    }
+	
+	#before_login aside form {
+		padding-top:20px;
+		}
+		
+	#before_login aside input {
+        padding: 4px;
+        font-size: 120%;
+    }
+	#before_login aside input[type="text"] { width: 313px; }
+	#before_login aside input[type="password"] { width: 220px; }
+	#before_login aside input[type="email"] { width: 220px; }
+	#before_login aside input[type="submit"] { width: 90px; padding-left:10px;padding-right:10px; }
+	
+	#before_login aside .login_label_field a{
+		color: #000;
+		font-size: 12px
+		}
+		
+	#before_login img {
+		width: 980px;
+		max-height:21px;
+		}
+		
+	 #title {
+        color: #c5292c;
+        font-size: 90px;
+        font-weight: bold;
+        text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+		margin-left: -60px;
+    }
+    #punchline {
+        color: #000;
+        font-size: 25px;
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+		margin-left: -60px;
+    }
+	
+/* ---------- BEFORE LOGIN END ---------- */
 
 /* ---------- HEADER ---------- */
 
@@ -64,11 +120,9 @@ h1,h2,h3,h4,h5,h6{
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
 	border-radius: 5px;	
-	background: #3f3c3c;
 	position: absolute;
-	width: 1020px;
-	margin-top: 70px;
-	height: 40px;
+	margin-left: 350px;
+	margin-top: 10px;
 }
 		
 .top_nav{ /* the navigation menu (menu ++) position */
@@ -86,9 +140,9 @@ h1,h2,h3,h4,h5,h6{
 .top_nav a{ /* (menu ++) design */
 	display:block;
 	margin-top: 0px;
-	padding: 5px 21px 5px 21px;
-	font-size: 17px;
-	border-right: 1px double #919191;
+	padding: 5px 10px 5px 10px;
+	font-size: 16px;
+	font-weight: bold;
 	font-family: Trebuchet MS;
 	color: #fff;
 	text-decoration: none;
@@ -96,33 +150,17 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .top_nav a:hover{ /* (menu ++) mouseover design */
-	padding: 5px 20px 5px 19px;
-	border: 2px solid #636363;
-	
-	background: -webkit-linear-gradient(bottom, #3a3a3a, #565656);
-	background: -moz-linear-gradient(bottom, #3a3a3a, #565656);
-	background: -ms-linear-gradient(bottom, #3a3a3a, #565656);
-	background: -o-linear-gradient(bottom, #3a3a3a, #565656);
-	background: linear-gradient(bottom, #3a3a3a, #565656);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3a3a3a, endColorstr=#565656);
+	color: rgb(255, 228, 228);
 }
 
 .top_nav a:active{ /* (menu ++) on click design */
-	padding: 5px 20px 5px 19px;
-	border: 2px solid #2d2d2d;
-	
-	background: -webkit-linear-gradient(bottom, #353535, #171717);
-	background: -moz-linear-gradient(bottom, #353535, #171717);
-	background: -ms-linear-gradient(bottom, #353535, #171717);
-	background: -o-linear-gradient(bottom, #353535, #171717);
-	background: linear-gradient(bottom, #353535, #171717);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#353535, endColorstr=#171717);	
+	color: rgb(255, 228, 228);
 }
 
 #search{ /* the product search position */
 	position: absolute;
-	margin-top: 76px;
-	margin-left: 830px;
+	margin-top: 15px;
+	margin-left: 230px;
 	max-width: 230px;
 	max-height: 50px;
 	z-index: 1;
@@ -133,7 +171,7 @@ h1,h2,h3,h4,h5,h6{
 	border-radius: 5px;
 	background: #f2efef;
 	border: 1px solid #000;
-	min-height: 22px;
+	min-height: 30px;
 	margin top: 5px;
 	width: 115px;
 	-moz-transition: width 0.5s ease;
@@ -142,7 +180,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 #search .search_input:focus {
-	width: 180px;
+	width: 420px;
 	-moz-transition: width 0.5s ease;
 	-webkit-transition: width 0.5s ease;
 	-o-transition: width 0.5s ease;
@@ -743,31 +781,15 @@ fieldset { /* each fieldset spacing size */
 	border: 2px solid #039503;
 	min-width: 120px;
 	min-height: 35px;
-	
-	background: -webkit-linear-gradient(bottom, #04ce04, #76fc76);
-	background: -moz-linear-gradient(bottom, #04ce04, #76fc76);
-	background: -ms-linear-gradient(bottom, #04ce04, #76fc76);
-	background: -o-linear-gradient(bottom, #04ce04, #76fc76);
-	background: linear-gradient(bottom, #04ce04, #76fc76);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#04ce04, endColorstr=#76fc76);	
+	background: url(template_image/button.png) repeat-x;
 	}
 
-.button:hover { /* button design on mouseover */	
-	background: -webkit-linear-gradient(bottom, #099908, #44f444);
-	background: -moz-linear-gradient(bottom, #099908, #44f444);
-	background: -ms-linear-gradient(bottom, #099908, #44f444);
-	background: -o-linear-gradient(bottom, #099908, #44f444);
-	background: linear-gradient(bottom, #099908, #44f444);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#099908, endColorstr=#44f444);	
+.button:hover { /* button design on mouseover */
+	background: url(template_image/button_hover.png) repeat-x;
 	}
 
-.button:active { /* button design on click */	
-	background: -webkit-linear-gradient(bottom, #56e456, #d0ebcf);
-	background: -moz-linear-gradient(bottom, #56e456, #d0ebcf);
-	background: -ms-linear-gradient(bottom, #56e456, #d0ebcf);
-	background: -o-linear-gradient(bottom, #56e456, #d0ebcf);
-	background: linear-gradient(bottom, #56e456, #d0ebcf);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#56e456, endColorstr=#d0ebcf);	
+.button:active { /* button design on click */
+	background: url(template_image/button_active.png) repeat-x;
 	}
 /* bid/login button end */
 
@@ -932,102 +954,111 @@ fieldset { /* each fieldset spacing size */
 
 /*---------- Buy_Tokens PAGE ----------*/
 
+#graphics {
+	text-align: center;
+	padding-bottom: 50px;
+	margin-left: -100px;
+	margin-top: -50px;
+	width: 1000px;
+	}
+	
+#graphics img {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: 10px solid #ccc;
+	width: 200px;
+	margin-top: 80px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	}
+	
+#graphics a{
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-weight: bold;
+	color: #575857;
+	border: 1px solid #f4e831;
+	background: url(template_image/price_button.png) repeat-x;
+	padding: 5px 10px 5px 10px;
+	text-decoration: none;
+	position: relative;
+	top: 30px;
+	left: -140px;
+	}
+	
+#graphics a:hover { /* button on mouseover */
+	background: url(template_image/price_button_hover.png) repeat-x;
+	}
+	
+#graphics a:active { /*button on click */
+	background: url(template_image/price_button_active.png) repeat-x;
+	}
+	
+	
+
+
+/*---------- Buy_Tokens PAGE END ----------*/
+
+
+
+/*---------- Buy_Tokens PAGE ----------*/
+
 .buy_tokens { /* description sentence position and size */
 	min-width: 720px;
 	text-align:justify;
 	}
-
+	
 .package_value { /* the token package container width */
-	margin-left: 20px;	
+	margin-left: 100px;	
 	}
-
-.package_value a{
-	text-decoration: none;
-	}
-
-.package_value .token_amount{ /* the token package border line and shadow */
+	
+.package_value .token_nav{ /* the token package border line and shadow */
+	box-shadow: 2px 2px 10px #666666;
+	border: 1px solid #000;	
 	list-style-type: none;
 	position:relative;
 	float:left;
-	margin-left:15px;
 }
-
-.package_value .token_amount li{	/* token package content font, size and position */
+	
+.package_value .token_nav h4{ /* token package title font, size and position */		
+	font-size: 15px;
+	border-bottom: 1px solid #000;
 	margin-left: -40px;
-	width: 150px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	min-width: 240px;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	text-align: center;
+	}
+
+
+.package_value .token_nav li{	/* token package content font, size and position */
+	font-size: 15px;
+	margin-left: -40px;
+	min-width: 240px;
+	padding-top: 0px;
+	padding-bottom: 30px;
 	text-align: center;
 }
 
-.package_value .token_amount .token_value {	/* token package content color */
-	box-shadow: 2px 2px 10px #666666;
-	border: 1px solid #64adba;	
-	height: 65px;
+.token_nav .token_value { /* content under "token packages" container size */
+	padding: 5px 20px 5px 20px;	
+	border: 2px solid #EDFBFD; /* to make the border same color with the background */
+	}
+
+/* price button for each package */
+.token_nav a { /* remove the token buy button underline text */
+	text-decoration: none;
+	}
+	
+.token_nav form { /* the paypal button image position */          
+	margin-bottom: 25px;
 	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
+	margin-left: -40px;
+}  	
+		
+
+/* price button for each package end */
 	
-	background: -webkit-linear-gradient(bottom, #85c0cc, #d3fdfd);
-	background: -moz-linear-gradient(bottom, #85c0cc, #d3fdfd);
-	background: -ms-linear-gradient(bottom, #85c0cc, #d3fdfd);
-	background: -o-linear-gradient(bottom, #85c0cc, #d3fdfd);
-	background: linear-gradient(bottom, #85c0cc, #d3fdfd);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d3fdfd, endColorstr=#85c0cc);
-
-	color: #014b52;
-}
-
-.package_value .token_amount .token_value_discount{	/* token discount package content color */
-	box-shadow: 2px 2px 10px #666666;
-	border: 1px solid #45a742;
-	padding: 15px 0px 35px 0px;	
-	font-size: 19px;
-	font-weight: bold;
-	
-	background: -webkit-linear-gradient(bottom, #63c75a, #cffdde);
-	background: -moz-linear-gradient(bottom, #63c75a, #cffdde);
-	background: -ms-linear-gradient(bottom, #63c75a, #cffdde);
-	background: -o-linear-gradient(bottom, #63c75a, #cffdde);
-	background: linear-gradient(bottom, #63c75a, #cffdde);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#63c75a, endColorstr=#cffdde);
-
-	color: #0f5411;
-}
-
-.package_value .token_amount .token_value:hover, .package_value .token_amount .token_value_discount:hover{	/* token package content color */
-	box-shadow: 2px 2px 10px #666666;
-	border: 1px solid #670000;
-
-	background: -webkit-linear-gradient(bottom, #a30606, #fb3939);
-	background: -moz-linear-gradient(bottom, #a30606, #fb3939);
-	background: -ms-linear-gradient(bottom, #a30606, #fb3939);
-	background: -o-linear-gradient(bottom, #a30606, #fb3939);
-	background: linear-gradient(bottom, #a30606, #fb3939);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a30606, endColorstr=#fb3939);
-
-	color: #fff;
-}
-
-.package_value .token_amount .token_value .price{	/* token package content font, size and position */
-	font-size: 15px;
-	font-weight: bold;
-	position: relative;
-	top: 25px;
-}
-
-.package_value .token_amount .token_value_discount .discount{	/* token package content font, size and position */
-	font-size: 15px;
-	font-weight: none;
-}
-
-.package_value .token_amount .token_value_discount .price{	/* token package content font, size and position */
-	font-size: 15px;
-	font-weight: bold;
-	position: relative;
-	top: 25px;
-}
-
 /*---------- Buy_Tokens PAGE END ----------*/
 
 
@@ -1420,7 +1451,6 @@ privacy ul li {
     #main_content{
 	padding-bottom: 202px;
 }
-
 
 /* ---------- AFTER LOGIN @ HEADER ---------- */
 
