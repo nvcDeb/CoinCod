@@ -4,9 +4,9 @@
 </div> <!--end div wrapper-->
 
 <footer id="footer_wrap">
-	<div class="upper_footer_wrap">
+	<section class="upper_footer_wrap">
 		<div class="container" align="left">
-			<div class="ul">
+			<nav class="ul">
 				<ul class="footer_nav">
 					<h4>Coincod</h4>
 					<li>
@@ -67,11 +67,11 @@
 						<a href="<?php echo $PREFIX; ?>/security">Security</a>
 					</li>
 				</ul>
-			</div>  <!--endl div class ul-->
-		</div>  <!--endl div class container-->
-	</div>  <!--endl div class upper_footer_wrap-->
+			</nav>  <!--end of nav ul-->
+		</div>  <!--end of container-->
+	</section>  <!--end of section upper_footer_wrap-->
 
-	<div id="lower_footer_wrap">
+	<section id="lower_footer_wrap">
 		<div class="container">
 			<div class="logo_image">
 				<a href="<?php echo $PREFIX; ?>"><img src="<?php echo $PREFIX; ?>/template/template_image/logo2.png" width="80px" border="0"></a>
@@ -81,16 +81,19 @@
 			</div>  <!--end div payment_image-->
 			<div class="copyright">
 				<p>Copyright &copy; 2012 NexVend Sdn Bhd. All rights reserved.</p>
-			</div>  <!--end div copyright-->
-		</div>  <!--end div container clearfix-->	 
-	</div>  <!--end div lower_footer_wrap-->         
+			</div><!--end of copyright-->
+		</div> <!--end of container-->	 
+	</section><!--end  of section lower_footer_wrap-->         
 	
+	<!-- back2top blockcode -->
 	<section id="back-top">
 		<a href="#top"><span></span>Back To Top</a>
-	</section>	
+	</section><!-- end of back2top -->	
 </footer><!--footer_wrap--> 		
+
+<!-- ======================================= Lazy Loads ================================= -->
         
-   
+<!-- back2top script-->   
 <script >
 	$(function(){
 		// hide #back-top first
@@ -113,9 +116,9 @@
 			});
 		});
 	});
-</script>
+</script><!-- end of back2top script -->
 
-<!--jquery dropdown-->
+<!-- Accordion script -->
 <script>
     $(function() {
         $("#menu").accordion({
@@ -124,7 +127,6 @@
         });
     });
 </script>
-<!--jquery dropdown-->
         
 </body>
 </html>
