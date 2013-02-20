@@ -1,12 +1,6 @@
 <?php
 	require '../config.php';
-	
-function get_sitestatus() {
-	$getstatus=mysql_query("SELECT * FROM status");
-	$get=mysql_fetch_array($getstatus);
-	$status=$get["site_status"];
-	return $status;
-}
+	require '../sql_function.php';
 ?>
 <div class="status_box">
 	<div class="status_left">

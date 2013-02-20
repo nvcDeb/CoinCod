@@ -1,38 +1,6 @@
 <?php
-	require $this->resource_path.'config.php';
-
-function insertproduct($brand, $model, $marketprice, $auctionprice, $category, $availablity, $description) {
-	$product_check=mysql_query("SELECT * FROM product_list WHERE Brand='$brand' and Model='$model' LIMIT 1");
-	$productcheck = mysql_num_rows($product_check);
-	if($productcheck > 0)
-	{
-		$error = "Sorry! The product is being duplicated. This should not happen!!!";
-	}
-	else
-	{
-		$getid=mysql_query("SELECT * FROM product_list WHERE product_id = (select Max(product_id) from product_list);");
-		$getId = mysql_fetch_array($getid);
-		$max_id = $getId["product_id"];
-		$productid = $max_id + 1;
-
-		$product_insert = "INSERT INTO product_list(product_id,Brand, Model, market_price, auction_price, Category, Availability,Description) VALUES('$productid','$brand','$model','$marketprice','$auctionprice','$category','$availability','$description')";  
-		$productinsert = mysql_query($product_insert) or die (mysql_error()); 		
-		
-		//insert to product_images
-		$productname="$productid.jpg";
-		move_uploaded_file($_FILES["image"]["tmp_name"],"$PREFIX/product/product_image/$productname");
-	
-		if($productinsert == 1)
-		{
-			$error = "Product is successfully saved into database<br/>";
-		}
-		else
-		{
-			$error = "Product failed to be saved.";
-		}
-	}
-	return $error;
-}
+	require '../config.php';
+	require '../sql_function';
 
 	if(isset($_POST["btnAdd"])){
 		

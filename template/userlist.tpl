@@ -1,21 +1,6 @@
 <?php
-function getUserListing()
-{
-	$sql = "SELECT * FROM user_account"; 
-	$res = mysql_query($sql);
-
-	$c=0;
-	while ($a_row = mysql_fetch_array($res)) {
-		$records[$c]["id"] = $a_row["user_id"];
-		$records[$c]["email"] = $a_row["Email"];
-		$records[$c]["username"] = $a_row["Username"];
-		$records[$c]["date"] = $a_row["date_register"];
-		$records[$c]["token"] = $a_row["Token"];
-	$c++;
-    }
-	
-	return $records;
-}
+	require '../config.php';
+	require '../sql_function.php';
 
 $user_list = getUserListing();
 for($i=0;$i<totaluser();$i++) {		

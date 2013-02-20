@@ -1,45 +1,7 @@
 <?php
-function getUserRecords($email)
-{
-	$sql = "SELECT * FROM user_account WHERE Email = '" . $email . "'"; 
-	$res = mysql_query($sql);
-	$a = mysql_fetch_array($res);
-	$records['id'] = $a["user_id"];
-	$records["category"] = $a["Category"];
-	$records["username"] = $a["Username"];
-	$records["email"] = $a["Email"];
-	$records["fname"] = $a["first_name"];
-	$records["lname"] = $a["last_name"];
-	$records["dob"] = $a["date_birth"];
-	$records["gender"] = $a["Gender"];
-	$records["add1"] = $a["Address1"];
-	$records["add2"] = $a["Address2"];
-	$records["city"] = $a["City"];
-	$records["state"] = $a["State"];
-	$records["zip"] = $a["Zip"];
-	$records["country"] = $a["Country"];
-	$records["mobile"] = $a["Mobile"];
-	$records["activation"] = $a["Activation"];
-	$records["token"] = $a["Token"];
-
-	return $records;
-}	
-function verifyLogin($email,$pass)
-{
-	$hash_pass = md5($pass);
-	
-	$sql = "SELECT * FROM user_account WHERE Email = '".$email."' AND hash_password = '" . $hash_pass . "'";
-	$res = mysql_query($sql);
-	$num = mysql_num_rows($res);
-
-	if ($num > 0)
-		return true;
-	return false;	
-}
-?>
-
-<?php
 session_start();
+include_once '../sql_function.php';
+
 if ((isset($_SESSION['user_id'])) && (isset($_SESSION['email']))) {
 	$now = time(); 
 	if($now > $_SESSION['expire']) {

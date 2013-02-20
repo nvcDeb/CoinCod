@@ -1,103 +1,7 @@
 <?php
 	require '../config.php';
-	$error = "";
-	
-function codeClean($var)
-{
-	$res = mysql_real_escape_string((get_magic_quotes_gpc())? stripslashes($var): $var);
-	return $res;
-}
-function getUserRecord($email)
-{
-	$sql = "SELECT * FROM user_account WHERE Email = '" . $email . "'"; 
-	$res = mysql_query($sql);
-	$a = mysql_fetch_array($res);
-	$records['id'] = $a["user_id"];
-	$records["category"] = $a["Category"];
-	$records["username"] = $a["Username"];
-	$records["email"] = $a["Email"];
-	$records["fname"] = $a["first_name"];
-	$records["lname"] = $a["last_name"];
-	$records["dob"] = $a["date_birth"];
-	$records["gender"] = $a["Gender"];
-	$records["add1"] = $a["Address1"];
-	$records["add2"] = $a["Address2"];
-	$records["city"] = $a["City"];
-	$records["state"] = $a["State"];
-	$records["zip"] = $a["Zip"];
-	$records["country"] = $a["Country"];
-	$records["mobile"] = $a["Mobile"];
-	$records["activation"] = $a["Activation"];
-	$records["token"] = $a["Token"];
-
-	return $records;
-}	
-function updateUser($id, $email, $user, $first_name, $last_name, $year, $month, $day, $gender, $add1, $add2, $city, $state, $zip, $mobile)
-{
-			$id = codeClean($id);
-	     $email = codeClean($email);
-		  $user = codeClean($user);
-		 $fname = codeClean($first_name);
-		 $lname = codeClean($last_name);
-		  $year = codeClean($year);
-		 $month = codeClean($month);
-		   $day = codeClean($day);
-	    $gender = codeClean($gender);
-		  $add1 = codeClean($add1);
-	      $add2 = codeClean($add2);
-		  $city = codeClean($city);
-		 $state = codeClean($state);
-		   $zip = codeClean($zip);
-	   $country = codeClean($country);
-		$mobile = codeClean($mobile);
-		   
-		if($month == '')			{ $month = 00;	}
-		if($month == 'January')		{ $month = 01;	}
-		if($month == 'February')	{ $month = 02;	}
-		if($month == 'March')		{ $month = 03;	}
-		if($month == 'April')		{ $month = 04;	}
-		if($month == 'May')			{ $month = 05;	}
-		if($month == 'June')		{ $month = 06;	}
-		if($month == 'July')		{ $month = 07;	}
-		if($month == 'August')		{ $month = 08;	}
-		if($month == 'September')	{ $month = 09;	}
-		if($month == 'October')		{ $month = 10;	}
-		if($month == 'November')	{ $month = 11;	}
-		if($month == 'December')	{ $month = 12;	}
-		$dob=sprintf("%04d-%02d-%02d", $year, $month, $day);
-				
-		$to = $email;
-		$toname = $user;
-		$from = "contact@nexvend.com";
-		$fromname ="Customer Service";
-		$subject = "Complete your registration";
-		$message = '<html>
-						<body>
-							Dear ' . $user . ',
-							<br /><br />
-							Your personal information was updated. We hope you have an enjoyable auction experience with us.
-							<br /><br /> 
-							Thank You!  
-							<br /><br /> 
-							Best Regards,
-							<br/>
-							CoinCod Management Team
-						</body>
-					</html>';
-		$headers = "From: $fromname <$from>\r\n";
-		$headers .= "Content-type: text/html\r\n";
-		$headers .= "Bcc: wilson@nexvend.com";
-		$to = "$toname <$to>";
-		$sending = mail($to, $subject, $message, $headers);
-		
-		if($sending) {
-			$sql = "UPDATE user_account SET Username='$user', first_name='$fname', last_name='$lname', date_birth='$dob', Gender='$gender', Address1='$add1', Address2='$add2', City='$city', Zip='$zip', State='$state', Mobile='$mobile' WHERE user_id='$id'";		
-			$res = mysql_query($sql);
-			return 99;
-		} else {
-			return 98;
-		}
-}	
+	require '../sql_function.php';
+	$error = "";	
 	
 	if(isset($_POST["btnSave"])){
 		$res = updateUser($_SESSION['user_id'], $_POST['emails'], $_POST["username"], $_POST["firstname"], $_POST["lastname"], $_POST["year"], $_POST["month"], $_POST["day"], $_POST["gender"], $_POST["add1"], $_POST["add2"], $_POST["city"], $_POST["state"], $_POST["zip"], $_POST["mobile"]);
@@ -109,7 +13,7 @@ function updateUser($id, $email, $user, $first_name, $last_name, $year, $month, 
 	}
 	
 	$email = $_SESSION['email'];
-	$user_data = getUserRecord($email);		
+	$user_data = getUserRecords($email);		
 	$id=$user_data["id"];
 	$username = $user_data["username"];
 	$token = $user_data["token"];

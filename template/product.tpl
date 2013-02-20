@@ -1,43 +1,6 @@
 <?php
 	require $this->resource_path.'config.php';
-function getTopBidder()
-{
-	$sql = "SELECT * FROM product_log WHERE auction_price=(select max(auction_price) from product_log)"; 
-	$res = mysql_query($sql);
-	$records = mysql_fetch_array($res);
-	$highest_user=$records["Username"];
-	return $highest_user;
-}
-function getTotalProduct()
-{
-	$sql = "SELECT * FROM product_list"; 
-	$res = mysql_query($sql);
-	$records = mysql_num_rows($res);
-	return $records;
-}
-function getProductList()
-{
-	$sql = "SELECT * FROM product_list"; 
-	$res = mysql_query($sql);
-
-	$c=0;
-	while ($a_row = mysql_fetch_array($res)) {
-		$records[$c]["pid"] = $a_row["product_id"];
-		$records[$c]["brand"] = $a_row["Brand"];
-		$records[$c]["model"] = $a_row["Model"];
-		$records[$c]["mprice"] = $a_row["market_price"];
-		$records[$c]["aprice"] = $a_row["auction_price"];
-		$records[$c]["category"] = $a_row["Category"];
-		$records[$c]["availablity"] = $a_row["Availability"];
-		$records[$c]["description"] = $a_row["Description"];
-		$records[$c]["bid"] = $a_row["total_bid"];
-		$records[$c]["astart"] = $a_row["auction_start"];
-		$records[$c]["aend"] = $a_row["auction_end"];
-	$c++;
-    }
-	
-	return $records;
-}
+	require $this->resource_path.'sql_function.php';
 ?>
 <section class="site_body">
 <?php

@@ -1,38 +1,5 @@
 <?php
 	require $this->resource_path.'config.php';
-function getProductDetails($pid)
-{
-	$sql = "SELECT * FROM product_list WHERE product_id='$pid'"; 
-	$res = mysql_query($sql);
-	$a_row = mysql_fetch_array($res);
-	
-	$records["pid"] = $a_row["product_id"];
-	$records["brand"] = $a_row["Brand"];
-	$records["model"] = $a_row["Model"];
-	$records["mprice"] = $a_row["market_price"];
-	$records["aprice"] = $a_row["auction_price"];
-	$records["category"] = $a_row["Category"];
-	$records["availablity"] = $a_row["Availability"];
-	$records["description"] = $a_row["Description"];
-	$records["bid"] = $a_row["total_bid"];
-	$records["astart"] = $a_row["auction_start"];
-	$records["aend"] = $a_row["auction_end"];
-	
-	return $records;
-}
-function getBidderList() {
-	$sql = "SELECT * FROM product_log ORDER BY Time DESC LIMIT 5"; 
-	$res = mysql_query($sql);
-	$c=0;
-	while ($a_row = mysql_fetch_array($res)) {
-		$records[$c]['username'] = $a_row["Username"];
-		$records[$c]['time'] = $a_row["Time"];
-
-	$c++;
-    }
-	
-	return $records;
-}
 ?>
 <div id="wrapper">
     <?php
