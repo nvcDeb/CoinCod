@@ -30,7 +30,6 @@ $tpl->meta_description = $meta_description;
 $tpl->content_container = $contentContainer;
 
 // Display a template using the assigned values.
-$tpl->login = "";
 $tpl->header = "";
 $tpl->footer = $tpl->fetch($template_path.'footer.tpl');
 $tpl->product = $tpl->fetch($template_path.'index.tpl');

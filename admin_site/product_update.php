@@ -54,7 +54,6 @@ $tpl->meta_description = $meta_description;
 $tpl->content_container = $contentContainer;
 
 // Display a template using the assigned values.
-$tpl->login = $tpl->fetch($template_path.'login.tpl');
 $tpl->header = $tpl->fetch($template_path.'header.tpl');
 $tpl->footer = $tpl->fetch($template_path.'footer.tpl');
 $tpl->display($template_path.'main.tpl');

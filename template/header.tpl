@@ -91,6 +91,9 @@
 						<input type="text" class="search_input" name="search" placeholder="Enter Search..." value="<?php echo isset($searchTerms)?htmlspecialchars($searchTerms):''; ?>" />
 					</form>
 				</div>  <!--end div search-->
+				
+				<a href="<?=$PREFIX?>/login"><button class="form_button" name="btnSubmit" type="submit">Sign In</button></a>
+				
 			</div> <!--end div container-->
 		</div> <!--end div header_content-->
 	</header> <!--end header-->
